@@ -1,0 +1,1 @@
+document.write('<div class=\"grid-x grid-padding-x\"><div class=\"cell large-6 navigation-background\"><h1>CS 4354: Concepts of Database Design</h1></div><div class=\"cell large-6 navigation-background navigation-bar\"><ul><li><a href=\"/index.php\">ATLC Schedule</a></li><li><a href=\"form.php\">Add Event</a></li></ul></div></div>');
