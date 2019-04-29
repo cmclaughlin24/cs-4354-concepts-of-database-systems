@@ -1,0 +1,56 @@
+
+div .navigation-background {
+  background-color: #6e766f;
+  color: #ffffff;
+}
+
+div .navigation-background img {
+  display: block;
+  float: left;
+  height: 70px;
+  width: auto;
+}
+
+div .navigation-background h1 {
+  text-align: center;
+  font-size: 4vw;
+  
+}
+
+div .navigation-bar ul {
+  list-style-type: none;
+}
+
+div .navigation-bar li a {
+  display: block;
+  text-align: center;
+  padding: 1vw;
+  color: #ffffff;
+}
+
+div .navigation-bar li a:hover {
+  background-color: #3b3f40;
+}
+
+
+@media only screen and (min-width: 1024px) {
+  div .navigation-background h1 {
+   text-align: left; 
+   display: inline;
+   font-size: 36px;
+  }
+  
+ 
+  div .navigation-background img {
+   padding-right: 10px;
+   padding-left: 10px;
+  }
+  
+  div .navigation-bar li {
+    float: left;
+  }
+
+  div .navigation-bar li a {
+    padding: 25px 4.5vw;
+  }
+}
