@@ -38,7 +38,7 @@
         Start Date: <input type="date" name="startDate" required>
         End Date: <input type="date" name="endDate" required>
         Hours: <select id="hoursType" name="hoursType" onchange="showHours(this.value)">
-          <option value="" disabled selected>Select Semester</option>    
+          <option value="" disabled selected>Select Hours</option>    
           <option value="reg">Regular</option>
           <option value="abr">Abbreviated</option>
           <option value="cld">Closed</option>

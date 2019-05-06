@@ -16,7 +16,7 @@
       alert("Submission Successful");
       page_redirect("../../index.php");
    }
-   alert("Submission Failed - " . $add);
+   alert("Submission Failed");
    page_redirect("../../form.php");
  } else {
       alert("Submission Failed - Invalid Dates");

@@ -1,25 +1,20 @@
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "ATLCDatabase";
-
 function addEvent($name, $startDate, $endDate, $hoursType, $semester) {
-  $created;
- 
-  $connection = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
-  
-  if($connection->connect_error) {
-    $created = "CONNECTION ERROR: " . $connection->connect_error;
-  } else {
-    $sql = "INSERT INTO " . $semester . " (eventName, startDate, endDate, hoursType) VALUES (" . $name . ", " . $startDate . ", " . $endDate . ", " . $hoursType . ")";
-  
-    if($connection->query($sql) === true) {
-      $created = true; 
-    }
+  try{
+    $db = new PDO("sqlite:" . __DIR__ . "/atlc.db");
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch(Exception $e) {
+    alert($e->getMessage());
   }
   
-  $connection->close();
-  return $created;
+  try {
+    $sql = "INSERT INTO Spring19 VALUES (13, Spring 2019 Final Exams, 2019-05-11, 2019-05-13, REG)";
+    $result = $db->exec($sql);
+  } catch (Exception $e) {
+    alert($e->getMessage());
+    return false; 
+  }
+  
+  return true;
 }
 ?>

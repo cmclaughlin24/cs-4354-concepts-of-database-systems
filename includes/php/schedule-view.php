@@ -1,34 +1,30 @@
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "ATLCDatabase";
-
 function displaySchedule($semester) {
-  $table ="";
   
-  $connection = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+  try {
+    $db = new PDO("sqlite:" . __DIR__ . "/atlc.db");
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (Exception $e) {
+    alert($e->getMessage());
+  }
+  
+  $table ="";
 
   $table .= "<table><tr><th>Event</th><th>ATLC Hours</th><th>Effective Dates</th></tr>";
-  
-  if ($connection->connect_error) {
-    $table .= "<tr><td><i>Error</i></td><td><i>Error</i></td><td><i>Error</i></td></tr>";
-  }
-  else {
+
+  try {
     $sql = "SELECT * FROM " . $semester;
-    $result = $connection->query($sql);
-    
-    if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-         $table .= "<tr><td>" . $row["eventName"]. "</td><td>" . $row["hoursType"] . "</td><td>" . $row["startDate"]. " - " . $row["endDate"]. "</td></tr>";
-      }
-    }  
+    $results = $db->query($sql);
+  } catch (Exception $e) {
+    alert($e->getMessage()); 
+  }
+
+  foreach(($results->fetchAll(PDO::FETCH_ASSOC)) as $event) {
+    $table .= "<tr><td>" . $event['eventName'] . "</td><td>" . $event['hoursType'] . "</td><td>" . $event['startDate'] . " to " . $event['endDate'] . "</td></tr>";
   }
   
   $table .= "</table>";
-  
   echo $table;
-  $connection->close();
 }
 
 if ($_POST['dropdownValue']){
